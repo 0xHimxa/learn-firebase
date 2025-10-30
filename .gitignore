@@ -7,3 +7,7 @@
 /build/
 # Firebase service account key
 /service-fb.json
+
+
+|# firebase credentials
+/app/config/admin-auth.ts
