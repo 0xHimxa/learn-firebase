@@ -1,0 +1,6 @@
+
+
+ i installed firebase-admin to be able to very the user from the server side weather login or not
+
+ also did download the  sivervice-accont.json which granted the admin accect
+ configured it at config/admin.ts

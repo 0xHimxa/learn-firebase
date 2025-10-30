@@ -5,3 +5,5 @@
 # React Router
 /.react-router/
 /build/
+# Firebase service account key
+/service-fb.json
