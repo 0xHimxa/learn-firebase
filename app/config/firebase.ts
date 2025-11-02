@@ -4,6 +4,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+
+// to assecc how db we need to insatll 
+ import { getFirestore } from "firebase/firestore";
+
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBkkCVlEuaOJPBP457-whd8kFR2kwV68Ew",
@@ -22,3 +28,8 @@ export const auth = getAuth(app);
 
 // provider is the auth type we are going to be using
 export const provider = new GoogleAuthProvider();
+
+
+// to accecss our db
+
+export const db = getFirestore(app)

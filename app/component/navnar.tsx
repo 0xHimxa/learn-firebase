@@ -1,10 +1,33 @@
-import { NavLink } from "react-router";
+import { Form, NavLink, useFetcher } from "react-router";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router";
+import type { R } from "node_modules/@react-router/dev/dist/routes-CZR-bKRt";
+import type { Route } from "../+types/root";
 // the auth will help us to know if the user is logged in or not
 // also contain info about the user
+
+
+
+
+
+
+export async function action({request}: Route.ActionArgs) {
+
+//   const formData = await request.formData();
+//   const name = formData.get("name");
+ console.log("Navbar action called",);
+
+return {}
+}
+
+
+
+
+
+
+
 
 function Navbar() {
  // console.log(auth.currentUser);
@@ -13,14 +36,29 @@ function Navbar() {
   // you have to install react firebase hooks this help more in the updat
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const signUserOut = async () => {
+
+const fetcher = useFetcher();
+
+
+
+
+
+
+  const signUserOut = async (event: React.FormEvent<HTMLFormElement>) => {
+ //event.preventDefault();
+    
+   // const form   = new FormData()
     try {
+
+   //  form.append('name','navbar signout')
       await signOut(auth);
-      return  await navigate("/login");
+//fetcher.submit(event.currentTarget,{method:"post"});
+      //return  await navigate("/login");
     } catch (e) {
       console.log(`error signing out: ${e}`);
     }
   };
+ console.log("User in Navbar:", user?.displayName);
   return (
     <div
       style={{
@@ -80,7 +118,8 @@ function Navbar() {
         {user && <img src={user?.photoURL || ""} alt="Profile" width="100" />}
         <h2>{user ? `Welcome ${user?.displayName}` : "Please log in"}</h2>
 
-        {user && <button onClick={signUserOut}>log out</button>}
+        {user && <fetcher.Form method="post" action='/logout' onSubmit={signUserOut}> <button type="submit">    Sign Out</button>
+    </fetcher.Form>}
       </div>
     </div>
   );
